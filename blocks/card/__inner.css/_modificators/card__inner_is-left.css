@@ -1,0 +1,4 @@
+.card__inner_is-left {
+  transform: rotateY(-2deg);
+  box-shadow: 10px 0 15px rgba(0, 0, 0, 0.514);
+}

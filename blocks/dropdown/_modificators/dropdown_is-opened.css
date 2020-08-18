@@ -1,0 +1,3 @@
+.dropdown.dropdown_is-opened {
+  transform: translateY(0);
+}

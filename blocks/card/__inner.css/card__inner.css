@@ -1,0 +1,13 @@
+@import url('./_modificators/card__inner_is-left.css');
+@import url('./_modificators/card__inner_is-right.css');
+@import url('./_modificators/card__inner_is-taken.css');
+
+.card__inner {
+  width: 100%;
+  height: 100%;
+  transition: .7s ease;
+  border: 1px solid black;
+  background-size: cover;
+  background-position: center;
+  background-image: url('../../../images/port4.png');
+}

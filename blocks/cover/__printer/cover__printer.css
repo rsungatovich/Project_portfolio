@@ -1,0 +1,4 @@
+.cover__printer {
+  display: flex;
+  transform: translateY(-50px);
+}

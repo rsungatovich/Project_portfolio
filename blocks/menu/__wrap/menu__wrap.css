@@ -1,0 +1,9 @@
+.menu__wrap {
+  padding: 10px;
+  opacity: 0;
+  transition: transform .5s, opacity .2s;
+}
+
+.menu__wrap:hover {
+  transform: scale(1.2);
+}

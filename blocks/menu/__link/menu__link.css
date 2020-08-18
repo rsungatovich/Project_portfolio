@@ -1,0 +1,7 @@
+.menu__link {
+  font-size: 76px;
+  color: white;
+  opacity: 0;
+  text-decoration: none;
+  transition: opacity .5s 1s;
+}
