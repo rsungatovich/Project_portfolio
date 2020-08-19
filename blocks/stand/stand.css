@@ -1,0 +1,7 @@
+@import url('./__top/stand__top.css');
+@import url('./__bottom/stand__bottom.css');
+
+.stand {
+  width: 50%;
+  height: 100%;
+}

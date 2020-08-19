@@ -1,4 +1,5 @@
 const dropdownEl = document.querySelector('.dropdown')
+const menuListEl = document.querySelector('.menu__list');
 const menuLinksEl = document.querySelectorAll('.menu__link');
 const menuWrapsEl = document.querySelectorAll('.menu__wrap');
 const coverEl = document.querySelector('.cover');
@@ -7,6 +8,10 @@ const coverPointerEl = document.querySelector('.cover__pointer');
 const mainButtonEl = document.querySelector('.main-button');
 const mainButtonSpanEl = document.querySelector('.main-button__span');
 const contentContainerEl = document.querySelector('.content__container');
+
+const standEl = document.querySelector('.stand')
+const standTopEl = document.querySelector('.stand__top')
+const standBottomEl = document.querySelector('.stand__bottom')
 
 class Card {
   constructor ({ contentContainerEl }) {
@@ -64,7 +69,8 @@ class Card {
 }
 
 class Menu {
-  constructor ({ menuLinksEl, menuWrapsEl }) {
+  constructor ({ menuLinksEl, menuWrapsEl, menuListEl }) {
+    this._list = menuListEl;
     this._links = menuLinksEl;
     this._wraps = menuWrapsEl;
   }
@@ -77,6 +83,11 @@ class Menu {
       wrap.classList.toggle('is-visible');
     })
   }
+
+  setEventListeners = (openStand) => {
+    this._list.addEventListener('mouseover', openStand);
+    this._list.addEventListener('mouseout', openStand);
+  }
 }
 
 class Dropdown {
@@ -86,6 +97,19 @@ class Dropdown {
 
   toggle = () => {
     this._popup.classList.toggle('dropdown_is-opened');
+  }
+}
+
+class Stand {
+  constructor ({ standEl, standTopEl, standBottomEl }) {
+    this._stand = standEl;
+    this._standTop = standTopEl;
+    this._standBottom = standBottomEl;
+  }
+
+  openStand = () => {
+    this._standTop.classList.toggle('is-opened');
+    this._standBottom.classList.toggle('is-opened');
   }
 }
 
@@ -196,7 +220,9 @@ class Cover {
 
 const dropdown = new Dropdown ({ dropdownEl });
 
-const menu = new Menu ({ menuLinksEl, menuWrapsEl });
+const menu = new Menu ({ menuLinksEl, menuWrapsEl, menuListEl });
+
+const stand = new Stand ({ standEl, standTopEl, standBottomEl });
 
 const cover = new Cover ({ coverEl, coverTitleEl, coverPointerEl });
 
@@ -205,6 +231,8 @@ const mainButton = new MainButton ({ mainButtonEl, mainButtonSpanEl })
 cover.printingTitle();
 
 cover.flashPointer();
+
+menu.setEventListeners(stand.openStand);
 
 mainButton.setEventListeners({ 
   togglePopup: dropdown.toggle, 
