@@ -1,10 +1,7 @@
 .header__social {
-  width: 40px;
-  height: 40px;
-  top: calc(50% - 20px);
-  right: 50px;
+  width: 50px;
+  height: 50px;
   display: block;
-  position: absolute;
   opacity: .5;
   transition: .3s;
   background-size: cover;

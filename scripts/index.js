@@ -99,10 +99,10 @@ class MainButton {
     this._buttonSpan.classList.add('main-button__span_is-changed');
 
     setTimeout(() => {
-      if (this._buttonSpan.textContent === 'Resume') {
+      if (this._buttonSpan.textContent === 'Portfolio') {
         this._buttonSpan.textContent = 'Close';
       } else {
-        this._buttonSpan.textContent = 'Resume';
+        this._buttonSpan.textContent = 'Portfolio';
       }
 
       this._buttonSpan.classList.remove('main-button__span_is-changed');
@@ -216,6 +216,9 @@ const createCard = () => {
   cardInstance.create();
 };
 
+createCard();
+createCard();
+createCard();
 createCard();
 
 
