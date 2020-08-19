@@ -13,6 +13,6 @@
 
 .main-button:hover .main-button__rect {
   stroke-width: 1;
-  stroke-dasharray: 0, 280;
-  stroke-dashoffset: 140;
+  stroke-dasharray: 0, 220;
+  stroke-dashoffset: 100;
 }

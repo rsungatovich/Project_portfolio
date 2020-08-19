@@ -1,0 +1,8 @@
+.content__porjects {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 100px 50px;
+  display: flex;
+  justify-content: center;
+  display: none;
+}

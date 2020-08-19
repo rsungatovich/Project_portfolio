@@ -3,19 +3,15 @@
 @import url('./__span/main-button__span.css');
 
 .main-button {
-  width: 250px;
-  height: 65px;
-  top: calc(50% - 32.5px);
-  left: 50px;
+  width: 200px;
+  height: 50px;
   z-index: 2;
-  position: absolute;
-  font-size: 22px;
+  font-size: 19px;
   border: none;
   cursor: pointer;
-  color: white;
+  color: #ffffff;
   position: relative;
   background-color: transparent;
-  font-family: 'Courier New', Courier, monospace;
   transition: .5s;
 }
 
