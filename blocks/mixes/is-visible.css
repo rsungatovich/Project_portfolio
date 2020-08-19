@@ -1,3 +1,7 @@
 .is-visible {
   opacity: 1;
 }
+
+.is-opened {
+  transform: translateY(0);
+}

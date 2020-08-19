@@ -1,0 +1,6 @@
+.stand__bottom {
+  height: 50%;
+  transition: .3s linear .2s;
+  transform: translateY(101%);
+  background-color: whitesmoke;
+}
