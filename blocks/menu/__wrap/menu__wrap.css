@@ -1,6 +1,7 @@
 .menu__wrap {
   margin: 0 0 20px;
   opacity: 0;
+  cursor: pointer;
   transition: transform .5s, opacity .2s;
 }
 
