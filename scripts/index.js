@@ -9,9 +9,11 @@ const mainButtonEl = document.querySelector('.main-button');
 const mainButtonSpanEl = document.querySelector('.main-button__span');
 const contentContainerEl = document.querySelector('.content__container');
 
-const standEl = document.querySelector('.stand')
-const standTopEl = document.querySelector('.stand__top')
-const standBottomEl = document.querySelector('.stand__bottom')
+const standEl = document.querySelector('.stand');
+const standTopEl = document.querySelector('.stand__top');
+const standBottomEl = document.querySelector('.stand__bottom');
+
+const menuOptionsEl = document.querySelector('.menu__options');
 
 class Card {
   constructor ({ contentContainerEl }) {
@@ -69,10 +71,19 @@ class Card {
 }
 
 class Menu {
-  constructor ({ menuLinksEl, menuWrapsEl, menuListEl }) {
+  constructor ({ menuLinksEl, menuWrapsEl, menuListEl, menuOptionsEl }) {
     this._list = menuListEl;
     this._links = menuLinksEl;
     this._wraps = menuWrapsEl;
+    this._options = menuOptionsEl;
+  }
+
+  closeOptions = () => {
+    this._options.classList.remove('menu__options_is-opened');
+  }
+
+  openOptions = () => {
+    this._options.classList.add('menu__options_is-opened');
   }
 
   toggleLinksVisible = () => {
@@ -88,7 +99,6 @@ class Menu {
     let iterationTime = 0;
 
     const iteration = () => {
-      console.log(1)
       const findEl = Array.from(this._links).find((link) => {
         return !link.classList.contains('menu__link_translate');
       });
@@ -115,12 +125,18 @@ class Menu {
     }, 1000)
   }
 
-  setEventListeners = (openStand) => {
-    this._list.addEventListener('mouseover', openStand);
-    this._list.addEventListener('mouseout', openStand);
+  setEventListeners = (toggleStand, saveStand) => {
+    this._list.addEventListener('mouseover', toggleStand);
+    this._list.addEventListener('mouseout', toggleStand);
+
     this._wraps.forEach((wrap) => {
-      wrap.addEventListener('click', this._translateLinks)
-    })
+      wrap.addEventListener('click', this._translateLinks);
+    });
+
+    this._links.forEach((link) => {
+      link.addEventListener('click', saveStand);
+      link.addEventListener('mousedown', this.openOptions);
+    });
   }
 }
 
@@ -130,7 +146,13 @@ class Dropdown {
   }
 
   toggle = () => {
-    this._popup.classList.toggle('dropdown_is-opened');
+    if (!this._popup.classList.contains('dropdown_is-opened')) {
+      this._popup.classList.add('dropdown_is-opened');
+    } else {
+      setTimeout(() => {
+        this._popup.classList.remove('dropdown_is-opened');
+      }, 1200)
+    }
   }
 }
 
@@ -146,7 +168,12 @@ class Stand {
     this._standBottom.classList.toggle('save-open');  
   }
 
-  openStand = () => {
+  closeStand = () => {
+    this._standTop.classList.remove('save-open');
+    this._standBottom.classList.remove('save-open');
+  }
+
+  toggleStand = () => {
     this._standTop.classList.toggle('is-opened');
     this._standBottom.classList.toggle('is-opened');
   }
@@ -175,11 +202,15 @@ class MainButton {
   setEventListeners = ({ 
     togglePopup, 
     visiblelinks, 
-    returnLinks }) => {
+    returnLinks,
+    closeOptions,
+    closeStand }) => {
     this._button.addEventListener('click', () => {
       togglePopup();
       visiblelinks();
       returnLinks();
+      closeOptions();
+      closeStand();
       this._changeName();
     })
   }
@@ -260,7 +291,7 @@ class Cover {
 
 const dropdown = new Dropdown ({ dropdownEl });
 
-const menu = new Menu ({ menuLinksEl, menuWrapsEl, menuListEl });
+const menu = new Menu ({ menuLinksEl, menuWrapsEl, menuListEl, menuOptionsEl });
 
 const stand = new Stand ({ standEl, standTopEl, standBottomEl });
 
@@ -272,12 +303,14 @@ cover.printingTitle();
 
 cover.flashPointer();
 
-menu.setEventListeners(stand.openStand);
+menu.setEventListeners(stand.toggleStand, stand.saveStandState);
 
 mainButton.setEventListeners({ 
   togglePopup: dropdown.toggle, 
   visiblelinks: menu.toggleLinksVisible,
   returnLinks: menu.returnLinks,
+  closeOptions: menu.closeOptions,
+  closeStand: stand.closeStand,
 });
 
 const createCard = () => {

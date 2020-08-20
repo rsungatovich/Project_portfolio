@@ -4,4 +4,40 @@
 
 .menu {
   margin: 0 0 0 50px;
+  position: relative;
+}
+
+.menu__options {
+  width: 500px;
+  height: 500px;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0 -55px;
+  display: flex;
+  position: absolute;
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px solid whitesmoke;
+  transform: translateX(-150%);
+  transition: 1s .7s;
+}
+
+.menu__project {
+  margin: 0 0 20px;
+  font-size: 44px;
+  cursor: pointer;
+  color: whitesmoke;
+  transition: .5s;
+}
+
+.menu__project:hover {
+  transform: scale(1.2);
+}
+
+.menu__options_is-opened {
+  z-index: 2;
+  transform: translateX(0);
 }
