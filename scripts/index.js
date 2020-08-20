@@ -9,6 +9,7 @@ import MainButton from './MainButton.js';
   const menuListEl = document.querySelector('.menu__list');
   const menuLinksEl = document.querySelectorAll('.menu__link');
   const menuWrapsEl = document.querySelectorAll('.menu__wrap');
+  const menuSublinksEl = document.querySelectorAll('.menu__sublink');
   const menuOptionsEl = document.querySelector('.menu__options');
   const menuOptionsBackEl = document.querySelector('.menu__back');
   const coverEl = document.querySelector('.cover');
@@ -30,6 +31,7 @@ import MainButton from './MainButton.js';
     menuLinksEl, 
     menuWrapsEl, 
     menuListEl, 
+    menuSublinksEl,
     menuOptionsEl, 
     menuOptionsBackEl });
   
@@ -64,6 +66,8 @@ import MainButton from './MainButton.js';
     returnLinks: menu.returnLinks,
     closeOptions: menu.closeOptions,
     closeStand: stand.closeStand,
+    notVisibleSublinks: menu.notVisibleSublinks,
+    notVisibleMenuBack: menu.notVisibleBack,
   });
   
   const createCard = () => {

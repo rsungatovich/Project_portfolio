@@ -23,13 +23,17 @@ export default class MainButton {
     visiblelinks, 
     returnLinks,
     closeOptions,
-    closeStand }) => {
+    closeStand,
+    notVisibleSublinks,
+    notVisibleMenuBack, }) => {
     this._button.addEventListener('click', () => {
       togglePopup();
       visiblelinks();
       returnLinks();
       closeOptions();
       closeStand();
+      notVisibleSublinks();
+      notVisibleMenuBack();
       this._changeName();
     })
   }

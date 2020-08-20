@@ -1,0 +1,14 @@
+@import url('./_is-visible/menu__sublink_is-visible.css');
+
+.menu__sublink {
+  margin: 0 0 20px;
+  font-size: 44px;
+  cursor: pointer;
+  color: whitesmoke;
+  opacity: 0;
+  transition: transform .5s, opacity .3s;
+}
+
+.menu__sublink:hover {
+  transform: scale(1.2);
+}

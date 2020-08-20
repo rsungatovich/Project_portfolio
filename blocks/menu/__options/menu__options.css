@@ -15,5 +15,5 @@
   flex-direction: column;
   border-top: 2px solid whitesmoke;
   transform: translateX(-150%);
-  transition: 1s .7s;
+  transition: 1s .3s;
 }
