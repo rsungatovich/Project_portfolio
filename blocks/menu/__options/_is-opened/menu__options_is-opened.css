@@ -1,0 +1,4 @@
+.menu__options.menu__options_is-opened {
+  z-index: 2;
+  transform: translateX(0);
+}
