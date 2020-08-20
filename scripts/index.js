@@ -75,7 +75,7 @@ class Menu {
     this._wraps = menuWrapsEl;
   }
 
-  toggleLinkVisible = () => {
+  toggleLinksVisible = () => {
     this._links.forEach((link) => {
       link.classList.toggle('is-visible');
     })
@@ -84,9 +84,43 @@ class Menu {
     })
   }
 
+  _translateLinks = () => {
+    let iterationTime = 0;
+
+    const iteration = () => {
+      console.log(1)
+      const findEl = Array.from(this._links).find((link) => {
+        return !link.classList.contains('menu__link_translate');
+      });
+
+      if (findEl) {
+        setTimeout(() => {
+          findEl.classList.add('menu__link_translate');
+          iterationTime = 250;
+          iteration();
+        }, iterationTime)
+      }
+
+      if (!findEl) return;
+    }
+
+    iteration();
+  }
+
+  returnLinks = () => {
+    setTimeout(() => {
+      this._links.forEach((link) => {
+        link.classList.remove('menu__link_translate');
+      })
+    }, 1000)
+  }
+
   setEventListeners = (openStand) => {
     this._list.addEventListener('mouseover', openStand);
     this._list.addEventListener('mouseout', openStand);
+    this._wraps.forEach((wrap) => {
+      wrap.addEventListener('click', this._translateLinks)
+    })
   }
 }
 
@@ -105,6 +139,11 @@ class Stand {
     this._stand = standEl;
     this._standTop = standTopEl;
     this._standBottom = standBottomEl;
+  }
+
+  saveStandState = () => {
+    this._standTop.classList.toggle('save-open');
+    this._standBottom.classList.toggle('save-open');  
   }
 
   openStand = () => {
@@ -135,11 +174,12 @@ class MainButton {
 
   setEventListeners = ({ 
     togglePopup, 
-    visiblelink, 
-    popupFigure }) => {
+    visiblelinks, 
+    returnLinks }) => {
     this._button.addEventListener('click', () => {
       togglePopup();
-      visiblelink();
+      visiblelinks();
+      returnLinks();
       this._changeName();
     })
   }
@@ -236,7 +276,8 @@ menu.setEventListeners(stand.openStand);
 
 mainButton.setEventListeners({ 
   togglePopup: dropdown.toggle, 
-  visiblelink: menu.toggleLinkVisible,
+  visiblelinks: menu.toggleLinksVisible,
+  returnLinks: menu.returnLinks,
 });
 
 const createCard = () => {
