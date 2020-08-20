@@ -14,6 +14,7 @@ const standTopEl = document.querySelector('.stand__top');
 const standBottomEl = document.querySelector('.stand__bottom');
 
 const menuOptionsEl = document.querySelector('.menu__options');
+const menuOptionsBackEl = document.querySelector('.menu__back');
 
 class Card {
   constructor ({ contentContainerEl }) {
@@ -71,11 +72,24 @@ class Card {
 }
 
 class Menu {
-  constructor ({ menuLinksEl, menuWrapsEl, menuListEl, menuOptionsEl }) {
+  constructor ({ 
+    menuLinksEl, 
+    menuWrapsEl, 
+    menuListEl, 
+    menuOptionsEl, 
+    menuOptionsBackEl }) {
     this._list = menuListEl;
     this._links = menuLinksEl;
     this._wraps = menuWrapsEl;
     this._options = menuOptionsEl;
+    this._optionsBack = menuOptionsBackEl;
+  }
+
+  _comebackMenu = () => {
+    this.closeOptions();
+    setTimeout(() => {
+      this._backTranslateLinks();
+    }, 1500)
   }
 
   closeOptions = () => {
@@ -117,6 +131,28 @@ class Menu {
     iteration();
   }
 
+  _backTranslateLinks = () => {
+    let iterationTime = 0;
+
+    const iteration = () => {
+      const findEl = Array.from(this._links).find((link) => {
+        return link.classList.contains('menu__link_translate');
+      });
+
+      if (findEl) {
+        setTimeout(() => {
+          findEl.classList.remove('menu__link_translate');
+          iterationTime = 250;
+          iteration();
+        }, iterationTime)
+      }
+
+      if (!findEl) return;
+    }
+
+    iteration();
+  }
+
   returnLinks = () => {
     setTimeout(() => {
       this._links.forEach((link) => {
@@ -128,6 +164,7 @@ class Menu {
   setEventListeners = (toggleStand, saveStand) => {
     this._list.addEventListener('mouseover', toggleStand);
     this._list.addEventListener('mouseout', toggleStand);
+    this._optionsBack.addEventListener('click', this._comebackMenu)
 
     this._wraps.forEach((wrap) => {
       wrap.addEventListener('click', this._translateLinks);
@@ -164,8 +201,8 @@ class Stand {
   }
 
   saveStandState = () => {
-    this._standTop.classList.toggle('save-open');
-    this._standBottom.classList.toggle('save-open');  
+    this._standTop.classList.add('save-open');
+    this._standBottom.classList.add('save-open');  
   }
 
   closeStand = () => {
@@ -291,7 +328,12 @@ class Cover {
 
 const dropdown = new Dropdown ({ dropdownEl });
 
-const menu = new Menu ({ menuLinksEl, menuWrapsEl, menuListEl, menuOptionsEl });
+const menu = new Menu ({ 
+  menuLinksEl, 
+  menuWrapsEl, 
+  menuListEl, 
+  menuOptionsEl, 
+  menuOptionsBackEl });
 
 const stand = new Stand ({ standEl, standTopEl, standBottomEl });
 
