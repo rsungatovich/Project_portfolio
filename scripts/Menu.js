@@ -122,7 +122,11 @@ export default class Menu {
     this._optionsBack.classList.remove('menu__back_is-visible');
   }
 
-  setEventListeners = ({ toggleStand, saveStand }) => {
+  setEventListeners = ({ 
+    toggleStand, 
+    saveStand, 
+    visibleContent, 
+    notVisibleContent }) => {
     this._list.addEventListener('mouseover', toggleStand);
     this._list.addEventListener('mouseout', toggleStand);
 
@@ -130,10 +134,15 @@ export default class Menu {
       this._comebackMenu();
       this.notVisibleSublinks();
       this.notVisibleBack();
+      notVisibleContent();
     })
 
     this._wraps.forEach((wrap) => {
       wrap.addEventListener('click', this._translateLinks);
+      wrap.addEventListener('mouseover', (e) => {
+        notVisibleContent();
+        visibleContent();
+      });
     });
 
     this._links.forEach((link) => {
@@ -142,6 +151,7 @@ export default class Menu {
         this.openOptions();
         this._visibleSublinks();
         this._visibleBack();
+        notVisibleContent();
       });
     });
   }

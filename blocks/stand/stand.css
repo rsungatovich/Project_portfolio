@@ -1,7 +1,11 @@
 @import url('./__top/stand__top.css');
 @import url('./__bottom/stand__bottom.css');
+@import url('./__content/stand__content.css');
+@import url('./__title/stand__title.css');
+@import url('./__description/stand__description.css');
 
 .stand {
   width: 50%;
   height: 100%;
+  position: relative;
 }

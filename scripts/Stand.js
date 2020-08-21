@@ -3,6 +3,7 @@ export default class Stand {
     this._stand = params.standEl;
     this._standTop = params.standTopEl;
     this._standBottom = params.standBottomEl;
+    this._standContent = params.standContentEl;
   }
 
   saveStandState = () => {
@@ -18,5 +19,15 @@ export default class Stand {
   toggleStand = () => {
     this._standTop.classList.toggle('is-opened');
     this._standBottom.classList.toggle('is-opened');
+  }
+
+  notVisibleStandContent = () => {
+    this._standContent.classList.remove('stand__content_is-visible');
+  }
+
+  visibleStandContent = () => {
+    setTimeout(() => {
+      this._standContent.classList.add('stand__content_is-visible');
+    }, 500) 
   }
 }
