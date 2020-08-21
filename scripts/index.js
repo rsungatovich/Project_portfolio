@@ -22,6 +22,8 @@ import MainButton from './MainButton.js';
   const standBottomEl = document.querySelector('.stand__bottom');
   const dropdownEl = document.querySelector('.dropdown')
   const contentContainerEl = document.querySelector('.content__container');
+
+  const standContentEl = document.querySelector('.stand__content');
   
   //classes
   
@@ -38,7 +40,8 @@ import MainButton from './MainButton.js';
   const stand = new Stand ({ 
     standEl, 
     standTopEl, 
-    standBottomEl });
+    standBottomEl,
+    standContentEl });
   
   const cover = new Cover ({ 
     coverEl, 
@@ -58,6 +61,8 @@ import MainButton from './MainButton.js';
   menu.setEventListeners({
     toggleStand: stand.toggleStand, 
     saveStand: stand.saveStandState,
+    visibleContent: stand.visibleStandContent,
+    notVisibleContent: stand.notVisibleStandContent,
   });
   
   mainButton.setEventListeners({ 
