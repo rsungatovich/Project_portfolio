@@ -22,12 +22,12 @@ export default class Stand {
   }
 
   notVisibleStandContent = () => {
-    this._standContent.classList.remove('stand__content_is-visible');
+    this._standContent.classList.remove('is-visible');
   }
 
   visibleStandContent = () => {
     setTimeout(() => {
-      this._standContent.classList.add('stand__content_is-visible');
+      this._standContent.classList.add('is-visible');
     }, 500) 
   }
 }

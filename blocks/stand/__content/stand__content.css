@@ -11,7 +11,3 @@
   opacity: 0;
   transition: .5s;
 }
-
-.stand__content_is-visible {
-  opacity: 1;
-}

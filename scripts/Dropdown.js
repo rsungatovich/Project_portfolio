@@ -4,11 +4,11 @@ export default class Dropdown {
   }
 
   toggle = () => {
-    if (!this._popup.classList.contains('dropdown_is-opened')) {
-      this._popup.classList.add('dropdown_is-opened');
+    if (!this._popup.classList.contains('is-opened')) {
+      this._popup.classList.add('is-opened');
     } else {
       setTimeout(() => {
-        this._popup.classList.remove('dropdown_is-opened');
+        this._popup.classList.remove('is-opened');
       }, 1200)
     }
   }

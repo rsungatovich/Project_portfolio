@@ -2,7 +2,3 @@
   opacity: 1;
   transition: .5s;
 }
-
-.main-button__span_is-changed {
-  opacity: 0;
-}
