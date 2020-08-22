@@ -1,8 +1,8 @@
-.is-visible {
+.is-opacity {
   opacity: 1;
 }
 
-.not-visible {
+.no-opacity {
   opacity: 0;
 }
 
@@ -10,6 +10,14 @@
   transform: translateY(0);
 }
 
-.is-opened {
+.translate-y-zero {
   transform: translateY(0);
+}
+
+.z-index-up {
+  z-index: 99;
+}
+
+.shift-to-left {
+  margin: 0 0 0 -150%;
 }

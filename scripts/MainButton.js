@@ -5,7 +5,7 @@ export default class MainButton {
   }
 
   _changeName = () => {
-    this._buttonSpan.classList.add('not-visible');
+    this._buttonSpan.classList.add('no-opacity');
 
     setTimeout(() => {
       if (this._buttonSpan.textContent === 'Portfolio') {
@@ -14,7 +14,7 @@ export default class MainButton {
         this._buttonSpan.textContent = 'Portfolio';
       }
 
-      this._buttonSpan.classList.remove('not-visible');
+      this._buttonSpan.classList.remove('no-opacity');
     }, 800)
   }
 
