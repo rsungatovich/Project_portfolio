@@ -1,11 +1,23 @@
-.is-visible {
+.is-opacity {
   opacity: 1;
+}
+
+.no-opacity {
+  opacity: 0;
 }
 
 .save-open {
   transform: translateY(0);
 }
 
-.is-opened {
+.translate-y-zero {
   transform: translateY(0);
+}
+
+.z-index-up {
+  z-index: 99;
+}
+
+.shift-to-left {
+  margin: 0 0 0 -150%;
 }

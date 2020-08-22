@@ -5,7 +5,3 @@
   text-decoration: none;
   transition: opacity .5s 1s, margin .1s;
 }
-
-.menu__link_translate {
-  margin: -150%;
-}

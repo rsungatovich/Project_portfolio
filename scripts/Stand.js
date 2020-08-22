@@ -17,17 +17,17 @@ export default class Stand {
   }
 
   toggleStand = () => {
-    this._standTop.classList.toggle('is-opened');
-    this._standBottom.classList.toggle('is-opened');
+    this._standTop.classList.toggle('translate-y-zero');
+    this._standBottom.classList.toggle('translate-y-zero');
   }
 
   notVisibleStandContent = () => {
-    this._standContent.classList.remove('stand__content_is-visible');
+    this._standContent.classList.remove('is-opacity');
   }
 
   visibleStandContent = () => {
     setTimeout(() => {
-      this._standContent.classList.add('stand__content_is-visible');
+      this._standContent.classList.add('is-opacity');
     }, 500) 
   }
 }

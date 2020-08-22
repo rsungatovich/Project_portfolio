@@ -16,19 +16,19 @@ export default class Menu {
   }
 
   closeOptions = () => {
-    this._options.classList.remove('menu__options_is-opened');
+    this._options.classList.remove('translate-y-zero', 'z-index-up');
   }
 
   openOptions = () => {
-    this._options.classList.add('menu__options_is-opened');
+    this._options.classList.add('translate-y-zero', 'z-index-up');
   }
 
   toggleLinksVisible = () => {
     this._links.forEach((link) => {
-      link.classList.toggle('is-visible');
+      link.classList.toggle('is-opacity');
     })
     this._wraps.forEach((wrap) => {
-      wrap.classList.toggle('is-visible');
+      wrap.classList.toggle('is-opacity');
     })
   }
 
@@ -37,12 +37,12 @@ export default class Menu {
 
     const iteration = () => {
       const findEl = Array.from(this._links).find((link) => {
-        return !link.classList.contains('menu__link_translate');
+        return !link.classList.contains('shift-to-left');
       });
 
       if (findEl) {
         setTimeout(() => {
-          findEl.classList.add('menu__link_translate');
+          findEl.classList.add('shift-to-left');
           iterationTime = 250;
           iteration();
         }, iterationTime)
@@ -59,12 +59,12 @@ export default class Menu {
 
     const iteration = () => {
       const findEl = Array.from(this._links).find((link) => {
-        return link.classList.contains('menu__link_translate');
+        return link.classList.contains('shift-to-left');
       });
 
       if (findEl) {
         setTimeout(() => {
-          findEl.classList.remove('menu__link_translate');
+          findEl.classList.remove('shift-to-left');
           iterationTime = 250;
           iteration();
         }, iterationTime)
@@ -79,7 +79,7 @@ export default class Menu {
   returnLinks = () => {
     setTimeout(() => {
       this._links.forEach((link) => {
-        link.classList.remove('menu__link_translate');
+        link.classList.remove('shift-to-left');
       })
     }, 1000)
   }
@@ -89,12 +89,12 @@ export default class Menu {
 
     const iteration = () => {
       const findEl = Array.from(this._sublinks).find((sublink) => {
-        return !sublink.classList.contains('menu__sublink_is-visible');
+        return !sublink.classList.contains('is-opacity');
       });
 
       if (findEl) {
         setTimeout(() => {
-          findEl.classList.add('menu__sublink_is-visible');
+          findEl.classList.add('is-opacity');
           iterationTime = 100;
           iteration();
         }, iterationTime)
@@ -108,18 +108,18 @@ export default class Menu {
 
   notVisibleSublinks = () => {
     this._sublinks.forEach((sublink) => {
-      sublink.classList.remove('menu__sublink_is-visible');
+      sublink.classList.remove('is-opacity');
     })
   }
 
   _visibleBack = () => {
     setTimeout(() => {
-      this._optionsBack.classList.add('menu__back_is-visible');
+      this._optionsBack.classList.add('is-opacity');
     }, 1000)
   }
 
   notVisibleBack = () => {
-    this._optionsBack.classList.remove('menu__back_is-visible');
+    this._optionsBack.classList.remove('is-opacity');
   }
 
   setEventListeners = ({ 
