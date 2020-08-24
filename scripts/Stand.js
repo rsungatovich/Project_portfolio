@@ -1,33 +1,37 @@
 export default class Stand {
   constructor (params) {
     this._stand = params.standEl;
-    this._standTop = params.standTopEl;
-    this._standBottom = params.standBottomEl;
-    this._standContent = params.standContentEl;
+    this._top = params.standTopEl;
+    this._bottom = params.standBottomEl;
+    this._content = params.standContentEl;
+    this._contentImage = params.standImageEl;
   }
 
-  saveStandState = () => {
-    this._standTop.classList.add('save-open');
-    this._standBottom.classList.add('save-open');  
+  open = () => {
+    this._top.classList.add('safe-translate-y-zero');
+    this._bottom.classList.add('safe-translate-y-zero');  
   }
 
-  closeStand = () => {
-    this._standTop.classList.remove('save-open');
-    this._standBottom.classList.remove('save-open');
+  close = () => {
+    this._top.classList.remove('safe-translate-y-zero');
+    this._bottom.classList.remove('safe-translate-y-zero');
   }
 
-  toggleStand = () => {
-    this._standTop.classList.toggle('translate-y-zero');
-    this._standBottom.classList.toggle('translate-y-zero');
+  showImage = (e) => {   
+    this._contentImage.classList.add('is-opacity');
+
+    if (e.target.textContent === 'About') {
+      this._contentImage.setAttribute('src', './images/about.svg');
+    }
+    if (e.target.textContent === 'Projects') {
+      this._contentImage.setAttribute('src', './images/projects.svg');
+    }
+    if (e.target.textContent === 'Contacts') {
+      this._contentImage.setAttribute('src', './images/contacts.svg');
+    }     
   }
 
-  notVisibleStandContent = () => {
-    this._standContent.classList.remove('is-opacity');
-  }
-
-  visibleStandContent = () => {
-    setTimeout(() => {
-      this._standContent.classList.add('is-opacity');
-    }, 500) 
+  unshowImage = () => {
+    this._contentImage.classList.remove('is-opacity');
   }
 }

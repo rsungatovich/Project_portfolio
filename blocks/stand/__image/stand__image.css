@@ -1,0 +1,11 @@
+.stand__image {
+  top: 25%;
+  left: 25%;
+  width: 40%;
+  height: 40%;
+  opacity: 0;
+  position: absolute;
+  object-fit: contain;
+  object-position: center;
+  transition: .5s;
+}

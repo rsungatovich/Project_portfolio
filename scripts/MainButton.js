@@ -4,6 +4,11 @@ export default class MainButton {
     this._buttonSpan = params.mainButtonSpanEl;
   }
 
+  _buttonStatus = () => {
+    this._button.classList.toggle('open');
+    return this._button.classList.contains('open');
+  }
+
   _changeName = () => {
     this._buttonSpan.classList.add('no-opacity');
 
@@ -19,22 +24,24 @@ export default class MainButton {
   }
 
   setEventListeners = ({ 
-    togglePopup, 
-    visiblelinks, 
-    returnLinks,
+    openList, 
+    switchMenu,
     closeOptions,
-    closeStand,
-    notVisibleSublinks,
-    notVisibleMenuBack, }) => {
+    switchDropdown, 
+    unshowStandImage,
+  }) => {
     this._button.addEventListener('click', () => {
-      togglePopup();
-      visiblelinks();
-      returnLinks();
-      closeOptions();
-      closeStand();
-      notVisibleSublinks();
-      notVisibleMenuBack();
       this._changeName();
+
+      if (this._buttonStatus()) {
+        openList();
+      } else {
+        closeOptions();
+        unshowStandImage();
+      }
+
+      switchMenu();
+      switchDropdown();
     })
   }
 }

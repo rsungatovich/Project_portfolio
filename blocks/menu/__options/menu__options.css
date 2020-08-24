@@ -1,17 +1,14 @@
 .menu__options {
-  width: 500px;
-  height: 500px;
   top: 0;
   left: 0;
-  padding: 0;
+  width: 100%;
+  height: 100%;
+  padding: 70px 0 0 50px;
   margin: 0 -55px;
-  display: flex;
   position: absolute;
   list-style: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  box-sizing: border-box;
   border-top: 2px solid whitesmoke;
   transform: translateX(-150%);
-  transition: 1s .3s;
+  transition: 1s;
 }

@@ -1,11 +1,14 @@
 @import url('./__list/menu__list.css');
 @import url('./__link/menu__link.css');
-@import url('./__wrap/menu__wrap.css');
 @import url('./__back/menu__back.css');
 @import url('./__options/menu__options.css');
 @import url('./__sublink/menu__sublink.css');
 
 .menu {
+  width: 550px;
+  height: 500px;
+  opacity: 0;
   margin: 0 0 0 50px;
   position: relative;
+  transition: .5s 1s;
 }

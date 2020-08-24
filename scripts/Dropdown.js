@@ -3,13 +3,13 @@ export default class Dropdown {
     this._popup = dropdownEl;
   }
 
-  toggle = () => {
+  switch = () => {
     if (!this._popup.classList.contains('translate-y-zero')) {
       this._popup.classList.add('translate-y-zero');
     } else {
       setTimeout(() => {
         this._popup.classList.remove('translate-y-zero');
-      }, 1200)
+      }, 1000)
     }
   }
 }

@@ -1,87 +1,40 @@
 export default class Menu {
   constructor (params) {
+    this._menu = params.dropMenuEl;
     this._list = params.menuListEl;
     this._links = params.menuLinksEl;
-    this._wraps = params.menuWrapsEl;
     this._sublinks = params.menuSublinksEl;
     this._options = params.menuOptionsEl;
     this._optionsBack = params.menuOptionsBackEl;
+    this._optionsNames = params.optionsNames;
   }
 
-  _comebackMenu = () => {
-    this.closeOptions();
-    setTimeout(() => {
-      this._backTranslateLinks();
-    }, 700)
+  switchMenu = () => {
+    this._menu.classList.toggle('is-opacity');
   }
 
-  closeOptions = () => {
-    this._options.classList.remove('translate-y-zero', 'z-index-up');
-  }
+  // options
 
   openOptions = () => {
+    this._visibleSublinks();
+    this._visibleBackButton();
     this._options.classList.add('translate-y-zero', 'z-index-up');
   }
 
-  toggleLinksVisible = () => {
-    this._links.forEach((link) => {
-      link.classList.toggle('is-opacity');
-    })
-    this._wraps.forEach((wrap) => {
-      wrap.classList.toggle('is-opacity');
-    })
+  closeOptions = () => {
+    this._unvisibleSublinks();
+    this._unvisibleBackButton();
+    this._options.classList.remove('translate-y-zero', 'z-index-up');
   }
 
-  _translateLinks = () => {
-    let iterationTime = 0;
-
-    const iteration = () => {
-      const findEl = Array.from(this._links).find((link) => {
-        return !link.classList.contains('shift-to-left');
-      });
-
-      if (findEl) {
-        setTimeout(() => {
-          findEl.classList.add('shift-to-left');
-          iterationTime = 250;
-          iteration();
-        }, iterationTime)
-      }
-
-      if (!findEl) return;
-    }
-
-    iteration();
-  }
-
-  _backTranslateLinks = () => {
-    let iterationTime = 0;
-
-    const iteration = () => {
-      const findEl = Array.from(this._links).find((link) => {
-        return link.classList.contains('shift-to-left');
-      });
-
-      if (findEl) {
-        setTimeout(() => {
-          findEl.classList.remove('shift-to-left');
-          iterationTime = 250;
-          iteration();
-        }, iterationTime)
-      }
-
-      if (!findEl) return;
-    }
-
-    iteration();
-  }
-
-  returnLinks = () => {
+  _visibleBackButton = () => {
     setTimeout(() => {
-      this._links.forEach((link) => {
-        link.classList.remove('shift-to-left');
-      })
+      this._optionsBack.classList.add('is-opacity');
     }, 1000)
+  }
+
+  _unvisibleBackButton = () => {
+    this._optionsBack.classList.remove('is-opacity');
   }
 
   _visibleSublinks = () => {
@@ -106,52 +59,137 @@ export default class Menu {
     iteration();
   }
 
-  notVisibleSublinks = () => {
+  _unvisibleSublinks = () => {
     this._sublinks.forEach((sublink) => {
       sublink.classList.remove('is-opacity');
     })
   }
 
-  _visibleBack = () => {
-    setTimeout(() => {
-      this._optionsBack.classList.add('is-opacity');
-    }, 1000)
+
+  // list
+
+  openList = () => {
+    this._unshiftLinks();
   }
 
-  notVisibleBack = () => {
-    this._optionsBack.classList.remove('is-opacity');
+  closeList = () => {
+    this._shiftLinks();
   }
 
-  setEventListeners = ({ 
-    toggleStand, 
-    saveStand, 
-    visibleContent, 
-    notVisibleContent }) => {
-    this._list.addEventListener('mouseover', toggleStand);
-    this._list.addEventListener('mouseout', toggleStand);
+  _shiftLinks = () => {
+    let iterationTime = 0;
 
-    this._optionsBack.addEventListener('click', (e) => {
-      this._comebackMenu();
-      this.notVisibleSublinks();
-      this.notVisibleBack();
-      notVisibleContent();
-    })
-
-    this._wraps.forEach((wrap) => {
-      wrap.addEventListener('click', this._translateLinks);
-      wrap.addEventListener('mouseover', (e) => {
-        notVisibleContent();
-        visibleContent();
+    const iteration = () => {
+      const findEl = Array.from(this._links).find((link) => {
+        return !link.classList.contains('shift-to-left');
       });
-    });
+
+      if (findEl) {
+        setTimeout(() => {
+          findEl.classList.add('shift-to-left');
+          iterationTime = 250;
+          iteration();
+        }, iterationTime)
+      }
+
+      if (!findEl) return;
+    }
+
+    iteration();
+  }
+
+  _unshiftLinks = () => {
+    let iterationTime = 0;
+
+    const iteration = () => {
+      const findEl = Array.from(this._links).find((link) => {
+        return link.classList.contains('shift-to-left');
+      });
+
+      if (findEl) {
+        setTimeout(() => {
+          findEl.classList.remove('shift-to-left');
+          iterationTime = 250;
+          iteration();
+        }, iterationTime)
+      }
+
+      if (!findEl) return;
+    }
+
+    iteration();
+  }
+
+
+  // link text
+
+  setLinkText = (e) => {
+    if (e.target.textContent === 'About') {
+      const length = this._sublinks.length;
+
+      for (let i = 0; i < length; i++) {
+        if (!this._optionsNames.about[i]) {
+          this._sublinks[i].style.display = 'none';
+          continue;
+        }
+        this._sublinks[i].textContent = this._optionsNames.about[i];
+      }
+    }
+
+    if (e.target.textContent === 'Projects') {
+      const length = this._sublinks.length;
+      for (let i = 0; i < length; i++) {
+        if (!this._optionsNames.projects[i]) {
+          this._sublinks[i].style.display = 'none';
+          continue;
+        }
+        this._sublinks[i].textContent = this._optionsNames.projects[i];
+      }
+    }
+
+    if (e.target.textContent === 'Contacts') {
+      const length = this._sublinks.length;
+      for (let i = 0; i < length; i++) {
+        if (!this._optionsNames.contacts[i]) {
+          this._sublinks[i].style.display = 'none';
+          continue;
+        }
+        this._sublinks[i].textContent = this._optionsNames.contacts[i];
+      }
+    }
+  }
+
+  resetLinkText = () => {
+    this._sublinks.forEach((sublink) => {
+      sublink.textContent = '';
+      sublink.removeAttribute('style');
+    })
+  }
+
+  setEventListeners = ({
+    openStand,
+    closeStand,
+    showStandImage,
+    unshowStandImage,
+  }) => {
+    this._optionsBack.addEventListener('click', (e) => {
+      closeStand();
+      this.openList();
+      this.closeOptions();
+      this.resetLinkText();
+    })
 
     this._links.forEach((link) => {
       link.addEventListener('click', (e) => {
-        saveStand();
+        openStand();
+        unshowStandImage();
+        this.closeList();
         this.openOptions();
-        this._visibleSublinks();
-        this._visibleBack();
-        notVisibleContent();
+        this.setLinkText(e);
+      });
+
+      link.addEventListener('mouseover', (e) => {
+        showStandImage(e);
       });
     });
   }

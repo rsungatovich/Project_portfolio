@@ -6,9 +6,30 @@ import Dropdown from './Dropdown.js';
 import MainButton from './MainButton.js';
 
 (function () {
+
+  const optionsNames = {
+    about: [
+      'About 1', 
+      'About 2', 
+      'About 3',
+    ],
+    projects: [
+      'Project 1', 
+      'Project 2', 
+      'Project 3', 
+      'Project 4',
+    ],
+    contacts: [
+      'Contact 1', 
+      'Contact 2', 
+      'Contact 3',
+    ],
+  }
+
+  // DOM
+  const dropMenuEl = document.querySelector('.menu');
   const menuListEl = document.querySelector('.menu__list');
   const menuLinksEl = document.querySelectorAll('.menu__link');
-  const menuWrapsEl = document.querySelectorAll('.menu__wrap');
   const menuSublinksEl = document.querySelectorAll('.menu__sublink');
   const menuOptionsEl = document.querySelector('.menu__options');
   const menuOptionsBackEl = document.querySelector('.menu__back');
@@ -22,35 +43,41 @@ import MainButton from './MainButton.js';
   const standBottomEl = document.querySelector('.stand__bottom');
   const dropdownEl = document.querySelector('.dropdown')
   const contentContainerEl = document.querySelector('.content__container');
-
   const standContentEl = document.querySelector('.stand__content');
+  const standImageEl = document.querySelector('.stand__image');
   
   //classes
   
   const dropdown = new Dropdown ({ dropdownEl });
   
   const menu = new Menu ({ 
-    menuLinksEl, 
-    menuWrapsEl, 
+    optionsNames,
+    dropMenuEl,
+    menuLinksEl,  
     menuListEl, 
     menuSublinksEl,
     menuOptionsEl, 
-    menuOptionsBackEl });
+    menuOptionsBackEl,
+  });
   
   const stand = new Stand ({ 
     standEl, 
     standTopEl, 
     standBottomEl,
-    standContentEl });
+    standContentEl,
+    standImageEl
+  });
   
   const cover = new Cover ({ 
     coverEl, 
     coverTitleEl, 
-    coverPointerEl });
+    coverPointerEl 
+  });
   
   const mainButton = new MainButton ({ 
     mainButtonEl, 
-    mainButtonSpanEl })
+    mainButtonSpanEl 
+  })
   
   // methods
   
@@ -59,20 +86,18 @@ import MainButton from './MainButton.js';
   cover.flashPointer();
   
   menu.setEventListeners({
-    toggleStand: stand.toggleStand, 
-    saveStand: stand.saveStandState,
-    visibleContent: stand.visibleStandContent,
-    notVisibleContent: stand.notVisibleStandContent,
+    openStand: stand.open,
+    closeStand: stand.close,
+    showStandImage: stand.showImage,
+    unshowStandImage: stand.unshowImage,
   });
   
-  mainButton.setEventListeners({ 
-    togglePopup: dropdown.toggle, 
-    visiblelinks: menu.toggleLinksVisible,
-    returnLinks: menu.returnLinks,
+  mainButton.setEventListeners({  
+    openList: menu.openList,
+    switchMenu: menu.switchMenu,
+    switchDropdown: dropdown.switch,
     closeOptions: menu.closeOptions,
-    closeStand: stand.closeStand,
-    notVisibleSublinks: menu.notVisibleSublinks,
-    notVisibleMenuBack: menu.notVisibleBack,
+    unshowStandImage: stand.unshowImage,
   });
   
   const createCard = () => {
