@@ -3,6 +3,7 @@
 @import url('./__content/stand__content.css');
 @import url('./__title/stand__title.css');
 @import url('./__description/stand__description.css');
+@import url('./__image/stand__image.css');
 
 .stand {
   width: 50%;
