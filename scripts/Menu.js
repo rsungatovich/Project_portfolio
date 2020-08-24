@@ -6,11 +6,14 @@ export default class Menu {
     this._sublinks = params.menuSublinksEl;
     this._options = params.menuOptionsEl;
     this._optionsBack = params.menuOptionsBackEl;
+    this._optionsNames = params.optionsNames;
   }
 
   switchMenu = () => {
     this._menu.classList.toggle('is-opacity');
   }
+
+  // options
 
   openOptions = () => {
     this._visibleSublinks();
@@ -62,6 +65,8 @@ export default class Menu {
     })
   }
 
+
+  // list
 
   openList = () => {
     this._unshiftLinks();
@@ -116,53 +121,40 @@ export default class Menu {
   }
 
 
-  setLinkText = (e) => {
-    const textAbout = [
-      'Биография', 
-      'Карьера', 
-      'Образование'
-    ];
-    const textProjects = [
-      'Научиться учиться', 
-      'Путешествие по России', 
-      'Фотогалерея "Mesto"', 
-      'Фонд #Раклечится'
-    ];
-    const textContacts = [
-      'Номер бухгалтера', 
-      'Номер охраника', 
-      'Номер соседа'
-    ];
+  // link text
 
+  setLinkText = (e) => {
     if (e.target.textContent === 'About') {
       const length = this._sublinks.length;
 
       for (let i = 0; i < length; i++) {
-        if (!textAbout[i]) {
+        if (!this._optionsNames.about[i]) {
           this._sublinks[i].style.display = 'none';
           continue;
         }
-        this._sublinks[i].textContent = textAbout[i];
+        this._sublinks[i].textContent = this._optionsNames.about[i];
       }
     }
+
     if (e.target.textContent === 'Projects') {
       const length = this._sublinks.length;
       for (let i = 0; i < length; i++) {
-        if (!textProjects[i]) {
+        if (!this._optionsNames.projects[i]) {
           this._sublinks[i].style.display = 'none';
           continue;
         }
-        this._sublinks[i].textContent = textProjects[i];
+        this._sublinks[i].textContent = this._optionsNames.projects[i];
       }
     }
+
     if (e.target.textContent === 'Contacts') {
       const length = this._sublinks.length;
       for (let i = 0; i < length; i++) {
-        if (!textContacts[i]) {
+        if (!this._optionsNames.contacts[i]) {
           this._sublinks[i].style.display = 'none';
           continue;
         }
-        this._sublinks[i].textContent = textContacts[i];
+        this._sublinks[i].textContent = this._optionsNames.contacts[i];
       }
     }
   }
@@ -174,8 +166,14 @@ export default class Menu {
     })
   }
 
-  setEventListeners = () => {
+  setEventListeners = ({
+    openStand,
+    closeStand,
+    showStandImage,
+    unshowStandImage,
+  }) => {
     this._optionsBack.addEventListener('click', (e) => {
+      closeStand();
       this.openList();
       this.closeOptions();
       this.resetLinkText();
@@ -183,9 +181,15 @@ export default class Menu {
 
     this._links.forEach((link) => {
       link.addEventListener('click', (e) => {
+        openStand();
+        unshowStandImage();
         this.closeList();
         this.openOptions();
         this.setLinkText(e);
+      });
+
+      link.addEventListener('mouseover', (e) => {
+        showStandImage(e);
       });
     });
   }

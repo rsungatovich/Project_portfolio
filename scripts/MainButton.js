@@ -24,22 +24,24 @@ export default class MainButton {
   }
 
   setEventListeners = ({ 
-    togglePopup, 
+    openList, 
     switchMenu,
-    unsafeStand,
-    closeOptions, }) => {
+    closeOptions,
+    switchDropdown, 
+    unshowStandImage,
+  }) => {
     this._button.addEventListener('click', () => {
       this._changeName();
 
       if (this._buttonStatus()) {
-
+        openList();
       } else {
-        unsafeStand();
         closeOptions();
+        unshowStandImage();
       }
 
       switchMenu();
-      togglePopup();
+      switchDropdown();
     })
   }
 }

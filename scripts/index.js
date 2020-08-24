@@ -6,6 +6,27 @@ import Dropdown from './Dropdown.js';
 import MainButton from './MainButton.js';
 
 (function () {
+
+  const optionsNames = {
+    about: [
+      'About 1', 
+      'About 2', 
+      'About 3',
+    ],
+    projects: [
+      'Project 1', 
+      'Project 2', 
+      'Project 3', 
+      'Project 4',
+    ],
+    contacts: [
+      'Contact 1', 
+      'Contact 2', 
+      'Contact 3',
+    ],
+  }
+
+  // DOM
   const dropMenuEl = document.querySelector('.menu');
   const menuListEl = document.querySelector('.menu__list');
   const menuLinksEl = document.querySelectorAll('.menu__link');
@@ -30,12 +51,13 @@ import MainButton from './MainButton.js';
   const dropdown = new Dropdown ({ dropdownEl });
   
   const menu = new Menu ({ 
+    optionsNames,
     dropMenuEl,
     menuLinksEl,  
     menuListEl, 
     menuSublinksEl,
     menuOptionsEl, 
-    menuOptionsBackEl 
+    menuOptionsBackEl,
   });
   
   const stand = new Stand ({ 
@@ -64,13 +86,18 @@ import MainButton from './MainButton.js';
   cover.flashPointer();
   
   menu.setEventListeners({
-
+    openStand: stand.open,
+    closeStand: stand.close,
+    showStandImage: stand.showImage,
+    unshowStandImage: stand.unshowImage,
   });
   
-  mainButton.setEventListeners({
-    togglePopup: dropdown.toggle, 
+  mainButton.setEventListeners({  
+    openList: menu.openList,
     switchMenu: menu.switchMenu,
+    switchDropdown: dropdown.switch,
     closeOptions: menu.closeOptions,
+    unshowStandImage: stand.unshowImage,
   });
   
   const createCard = () => {

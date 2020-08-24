@@ -7,32 +7,19 @@ export default class Stand {
     this._contentImage = params.standImageEl;
   }
 
-  safeState = () => {
+  open = () => {
     this._top.classList.add('safe-translate-y-zero');
     this._bottom.classList.add('safe-translate-y-zero');  
   }
 
-  unsafeStand = () => {
+  close = () => {
     this._top.classList.remove('safe-translate-y-zero');
     this._bottom.classList.remove('safe-translate-y-zero');
   }
 
-  switchStand = () => {
-    this._top.classList.toggle('translate-y-zero');
-    this._bottom.classList.toggle('translate-y-zero');
-  }
+  showImage = (e) => {   
+    this._contentImage.classList.add('is-opacity');
 
-  visibleStandContent = () => {
-    setTimeout(() => {
-      this._content.classList.add('is-opacity');
-    }, 500)
-  }
-
-  unvisibleStandContent = () => {
-    this._content.classList.remove('is-opacity');
-  }
-
-  setContentImage = (e) => {   
     if (e.target.textContent === 'About') {
       this._contentImage.setAttribute('src', './images/about.svg');
     }
@@ -44,11 +31,7 @@ export default class Stand {
     }     
   }
 
-  visibleContentImage = () => {
-    this._contentImage.style.display = 'block';
-  }
-
-  unvisibleContentImage = () => {
-    this._contentImage.style.display = 'none';
+  unshowImage = () => {
+    this._contentImage.classList.remove('is-opacity');
   }
 }
