@@ -1,3 +1,7 @@
+.is-visible {
+  visibility: visible;
+}
+
 .is-opacity {
   opacity: 1;
 }

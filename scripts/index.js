@@ -7,6 +7,10 @@ import MainButton from './MainButton.js';
 
 (function () {
 
+  const mainButtonNames = ['Close', 'Portfolio'];
+
+  const menuLinksNames = ['About', 'Projects', 'Contacts']
+
   const optionsNames = {
     about: [
       'About 1', 
@@ -80,7 +84,8 @@ import MainButton from './MainButton.js';
   
   const dropdown = new Dropdown ({ dropdownEl });
   
-  const menu = new Menu ({ 
+  const menu = new Menu ({
+    menuLinksNames,
     optionsNames,
     dropMenuEl,
     menuLinksEl,  
@@ -91,6 +96,7 @@ import MainButton from './MainButton.js';
   });
 
   const stand = new Stand ({
+    menuLinksNames,
     optionsContent,
     standEl, 
     standTopEl, 
@@ -108,7 +114,8 @@ import MainButton from './MainButton.js';
     coverPointerEl 
   });
   
-  const mainButton = new MainButton ({ 
+  const mainButton = new MainButton ({
+    mainButtonNames,
     mainButtonEl, 
     mainButtonSpanEl 
   })

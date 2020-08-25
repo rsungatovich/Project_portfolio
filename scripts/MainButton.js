@@ -2,29 +2,24 @@ export default class MainButton {
   constructor (params) {
     this._button = params.mainButtonEl;
     this._buttonSpan = params.mainButtonSpanEl;
-  }
-
-  _buttonStatus = () => {
-    this._button.classList.toggle('open');
-    return this._button.classList.contains('open');
+    this._mainButtonNames = params.mainButtonNames;
   }
 
   _changeName = () => {
-    this._buttonSpan.classList.add('no-opacity');
+    this._buttonSpan.style.opacity = '0';
 
     setTimeout(() => {
-      if (this._buttonSpan.textContent === 'Portfolio') {
-        this._buttonSpan.textContent = 'Close';
+      if (this._buttonSpan.textContent === this._mainButtonNames[1]) {
+        this._buttonSpan.textContent = this._mainButtonNames[0];
       } else {
-        this._buttonSpan.textContent = 'Portfolio';
+        this._buttonSpan.textContent = this._mainButtonNames[1];
       }
 
-      this._buttonSpan.classList.remove('no-opacity');
-    }, 800)
+      this._buttonSpan.style.opacity = '';
+    }, 1000)
   }
 
   setEventListeners = ({ 
-    openList, 
     switchMenu,
     closeOptions,
     switchDropdown, 
@@ -35,16 +30,11 @@ export default class MainButton {
     this._button.addEventListener('click', () => {
       this._changeName();
 
-      if (this._buttonStatus()) {
-        openList();
-      } else {
-        closeOptions();
-        unshowStandImage();
-        unshowStandInfo();
-        closeStand();
-      }
-
       switchMenu();
+      closeStand();
+      closeOptions();
+      unshowStandImage();
+      unshowStandInfo();
       switchDropdown();
     })
   }
