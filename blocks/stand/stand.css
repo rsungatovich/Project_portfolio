@@ -4,6 +4,7 @@
 @import url('./__title/stand__title.css');
 @import url('./__description/stand__description.css');
 @import url('./__image/stand__image.css');
+@import url('./__info/stand__info.css');
 
 .stand {
   width: 50%;
