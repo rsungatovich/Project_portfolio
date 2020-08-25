@@ -20,6 +20,7 @@ export default class MainButton {
   }
 
   setEventListeners = ({ 
+    openList,
     switchMenu,
     closeOptions,
     switchDropdown, 
@@ -29,13 +30,16 @@ export default class MainButton {
   }) => {
     this._button.addEventListener('click', () => {
       this._changeName();
-
       switchMenu();
       closeStand();
       closeOptions();
       unshowStandImage();
       unshowStandInfo();
       switchDropdown();
+
+      setTimeout(() => {
+        openList();
+      }, 1000);
     })
   }
 }

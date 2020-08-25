@@ -57,7 +57,6 @@ export default class Menu {
 
   _unshiftLinks = () => {
     let iterationTime = 0;
-
     const iteration = () => {
       const findEl = Array.from(this._links).find((link) => {
         return link.style.margin;
