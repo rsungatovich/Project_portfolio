@@ -7,6 +7,12 @@ import MainButton from './MainButton.js';
 
 (function () {
 
+  const printText = [
+    'Vue',
+    'React',
+    'Ecma',
+  ];
+
   const mainButtonNames = ['Close', 'Portfolio'];
 
   const menuLinksNames = ['About', 'Projects', 'Contacts']
@@ -108,7 +114,8 @@ import MainButton from './MainButton.js';
     standInfoDescEl,
   });
   
-  const cover = new Cover ({ 
+  const cover = new Cover ({
+    printText,
     coverEl, 
     coverTitleEl, 
     coverPointerEl 
