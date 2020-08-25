@@ -11,5 +11,5 @@
   justify-content: space-between;
   background-color: black;
   transform: translateY(-100%);
-  transition: 1s cubic-bezier(1,.01,.4,.5);
+  transition: .5s ease-in-out;
 }

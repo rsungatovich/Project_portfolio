@@ -7,64 +7,20 @@ export default class Menu {
     this._options = params.menuOptionsEl;
     this._optionsBack = params.menuOptionsBackEl;
     this._optionsNames = params.optionsNames;
+    this._menuLinksNames = params.menuLinksNames;
   }
 
   switchMenu = () => {
-    this._menu.classList.toggle('is-opacity');
-  }
-
-  // options
-
-  openOptions = () => {
-    this._visibleSublinks();
-    this._visibleBackButton();
-    this._options.classList.add('translate-y-zero', 'z-index-up');
-  }
-
-  closeOptions = () => {
-    this._unvisibleSublinks();
-    this._unvisibleBackButton();
-    this._options.classList.remove('translate-y-zero', 'z-index-up');
-  }
-
-  _visibleBackButton = () => {
-    setTimeout(() => {
-      this._optionsBack.classList.add('is-opacity');
-    }, 1000)
-  }
-
-  _unvisibleBackButton = () => {
-    this._optionsBack.classList.remove('is-opacity');
-  }
-
-  _visibleSublinks = () => {
-    let iterationTime = 1000;
-
-    const iteration = () => {
-      const findEl = Array.from(this._sublinks).find((sublink) => {
-        return !sublink.classList.contains('is-opacity');
-      });
-
-      if (findEl) {
-        setTimeout(() => {
-          findEl.classList.add('is-opacity');
-          iterationTime = 100;
-          iteration();
-        }, iterationTime)
-      }
-
-      if (!findEl) return;
+    if (+this._menu.style.opacity) {
+      this._menu.style.opacity = '';
+      this._links.forEach((link) => link.style.visibility = 'hidden');
+    } else {
+      setTimeout(() => {
+        this._menu.style.opacity = '1';
+        this._links.forEach((link) => link.style.visibility = 'visible');
+      }, 1000)
     }
-
-    iteration();
   }
-
-  _unvisibleSublinks = () => {
-    this._sublinks.forEach((sublink) => {
-      sublink.classList.remove('is-opacity');
-    })
-  }
-
 
   // list
 
@@ -81,12 +37,13 @@ export default class Menu {
 
     const iteration = () => {
       const findEl = Array.from(this._links).find((link) => {
-        return !link.classList.contains('shift-to-left');
+        // return !link.classList.contains('shift-to-left');
+        return !link.style.margin;
       });
 
       if (findEl) {
         setTimeout(() => {
-          findEl.classList.add('shift-to-left');
+          findEl.style.margin = '0 0 0 -150%';
           iterationTime = 250;
           iteration();
         }, iterationTime)
@@ -103,12 +60,12 @@ export default class Menu {
 
     const iteration = () => {
       const findEl = Array.from(this._links).find((link) => {
-        return link.classList.contains('shift-to-left');
+        return link.style.margin;
       });
 
       if (findEl) {
         setTimeout(() => {
-          findEl.classList.remove('shift-to-left');
+          findEl.style.margin = '';
           iterationTime = 250;
           iteration();
         }, iterationTime)
@@ -120,11 +77,66 @@ export default class Menu {
     iteration();
   }
 
+  // options
+
+  openOptions = () => {
+    this._visibleSublinks();
+    this._visibleBackButton();
+
+    this._options.style.transform = 'translateY(0)';
+    this._options.style.zIndex = '99';
+  }
+
+  closeOptions = () => {
+    this._unvisibleSublinks();
+    this._unvisibleBackButton();
+
+    this._options.style.transform = '';
+    this._options.style.zIndex = '';
+  }
+
+  _visibleSublinks = () => {
+    let iterationTime = 1000;
+
+    const iteration = () => {
+      const findEl = Array.from(this._sublinks).find((sublink) => {
+        return !sublink.style.opacity;
+      });
+
+      if (findEl) {
+        setTimeout(() => {
+          findEl.style.opacity = '1';
+          iterationTime = 100;
+          iteration();
+        }, iterationTime)
+      }
+
+      if (!findEl) return;
+    }
+
+    iteration();
+  }
+
+  _unvisibleSublinks = () => {
+    this._sublinks.forEach((sublink) => {
+      sublink.style.opacity = '';
+    })
+  }
+
+  _visibleBackButton = () => {
+    setTimeout(() => {
+      this._optionsBack.style.opacity = '1';
+    }, 1000)
+  }
+
+  _unvisibleBackButton = () => {
+    this._optionsBack.style.opacity = '';
+  }
 
   // link text
 
   setLinkText = (e) => {
-    if (e.target.textContent === 'About') {
+    if (e.target.textContent === this._menuLinksNames[0]) {
       const length = this._sublinks.length;
 
       for (let i = 0; i < length; i++) {
@@ -136,7 +148,7 @@ export default class Menu {
       }
     }
 
-    if (e.target.textContent === 'Projects') {
+    if (e.target.textContent === this._menuLinksNames[1]) {
       const length = this._sublinks.length;
       for (let i = 0; i < length; i++) {
         if (!this._optionsNames.projects[i]) {
@@ -147,7 +159,7 @@ export default class Menu {
       }
     }
 
-    if (e.target.textContent === 'Contacts') {
+    if (e.target.textContent === this._menuLinksNames[2]) {
       const length = this._sublinks.length;
       for (let i = 0; i < length; i++) {
         if (!this._optionsNames.contacts[i]) {
@@ -162,7 +174,7 @@ export default class Menu {
   resetLinkText = () => {
     this._sublinks.forEach((sublink) => {
       sublink.textContent = '';
-      sublink.removeAttribute('style');
+      sublink.style.display = '';
     })
   }
 
@@ -193,6 +205,10 @@ export default class Menu {
 
       link.addEventListener('mouseover', (e) => {
         showStandImage(e);
+      });
+
+      link.addEventListener('mouseout', (e) => {
+        unshowStandImage();
       });
     });
 

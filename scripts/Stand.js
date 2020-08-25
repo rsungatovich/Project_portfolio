@@ -9,46 +9,47 @@ export default class Stand {
     this._standInfoTitleEl = params.standInfoTitleEl;
     this._standInfoDescEl = params.standInfoDescEl;
     this._optionsContent = params.optionsContent;
+    this._menuLinksNames = params.menuLinksNames;
   }
 
   open = () => {
-    this._top.classList.add('safe-translate-y-zero');
-    this._bottom.classList.add('safe-translate-y-zero');  
+    this._top.style.transform = 'translateY(0)';
+    this._bottom.style.transform = 'translateY(0)';
   }
 
   close = () => {
-    this._top.classList.remove('safe-translate-y-zero');
-    this._bottom.classList.remove('safe-translate-y-zero');
+    this._top.style.transform = '';
+    this._bottom.style.transform = '';
   }
 
   showImage = (e) => {   
-    this._contentImage.classList.add('is-opacity');
+    this._contentImage.style.opacity = '1';
     this._switchImage(e); 
   }
 
   unshowImage = () => {
-    this._contentImage.classList.remove('is-opacity');
+    this._contentImage.style.opacity = '';
   }
 
   _switchImage = (e) => {
-    if (e.target.textContent === 'About') {
+    if (e.target.textContent === this._menuLinksNames[0]) {
       this._contentImage.setAttribute('src', './images/about.svg');
     }
-    if (e.target.textContent === 'Projects') {
+    if (e.target.textContent === this._menuLinksNames[1]) {
       this._contentImage.setAttribute('src', './images/projects.svg');
     }
-    if (e.target.textContent === 'Contacts') {
+    if (e.target.textContent === this._menuLinksNames[2]) {
       this._contentImage.setAttribute('src', './images/contacts.svg');
     }
   }
 
   showInfo = (e) => {
-    this._contentInfo.classList.add('is-opacity');
+    this._contentInfo.style.opacity = '1';
     this._switchInfo(e);
   }
 
   unshowInfo = () => {
-    this._contentInfo.classList.remove('is-opacity');
+    this._contentInfo.style.opacity = '';
   }
 
   _switchInfo = (e) => {

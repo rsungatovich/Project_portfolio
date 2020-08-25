@@ -1,15 +1,15 @@
 export default class Dropdown {
   constructor ({ dropdownEl }) {
-    this._popup = dropdownEl;
+    this.dropdown = dropdownEl;
   }
 
   switch = () => {
-    if (!this._popup.classList.contains('translate-y-zero')) {
-      this._popup.classList.add('translate-y-zero');
+    if (!this.dropdown.style.transform) {
+      this.dropdown.style.transform = 'translateY(0)';
     } else {
       setTimeout(() => {
-        this._popup.classList.remove('translate-y-zero');
-      }, 1000)
+        this.dropdown.style.transform = '';
+      }, 500)
     }
   }
 }
