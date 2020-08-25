@@ -23,12 +23,14 @@ export default class Stand {
   }
 
   showImage = (e) => {   
-    this._contentImage.style.opacity = '1';
+    this._contentImage.style.opacity = '.8';
+    this._contentImage.style.visibility = 'visible';
     this._switchImage(e); 
   }
 
   unshowImage = () => {
     this._contentImage.style.opacity = '';
+    this._contentImage.style.visibility = 'hidden';
   }
 
   _switchImage = (e) => {
@@ -45,11 +47,13 @@ export default class Stand {
 
   showInfo = (e) => {
     this._contentInfo.style.opacity = '1';
+    this._contentInfo.style.visibility = 'visible';
     this._switchInfo(e);
   }
 
   unshowInfo = () => {
     this._contentInfo.style.opacity = '';
+    this._contentInfo.style.visibility = 'hidden';
   }
 
   _switchInfo = (e) => {

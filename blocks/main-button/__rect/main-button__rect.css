@@ -4,7 +4,7 @@
   width: 100%;
   height: 100%;
   stroke:  white;
-  stroke-width: 3;
+  stroke-width: 2;
   transition: 1s;
   position: absolute;
   stroke-dasharray: 560, 0;

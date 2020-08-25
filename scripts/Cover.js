@@ -3,8 +3,8 @@ export default class Cover {
     this._cover = params.coverEl;
     this._title = params.coverTitleEl;
     this._pointer = params.coverPointerEl;
-    this._allText = ['JavaScript', 'Node.JS', 'HTML5', 'CSS3'];
-    this._text = 'Wellcome';
+    this._allText = params.printText;
+    this._text = 'Dvlp';
     this._index = 0;
   }
 
@@ -15,6 +15,26 @@ export default class Cover {
 
     this._text = this._allText[this._index];
     this._index++;
+  }
+
+  printingTitle = () => {
+    let i = 0;
+    const iteration = () => {
+      setTimeout(() => {
+        this._title.textContent += this._text[i];
+        i++
+        if (i < this._text.length) {
+          iteration();
+        } else {
+          setTimeout(() => {
+            this._eraseTitle();
+          }, 2000);
+          return;
+        }
+      }, 100)
+    }
+
+    iteration();
   }
 
   _eraseTitle = () => {
@@ -38,26 +58,6 @@ export default class Cover {
     }
 
     iteration();    
-  }
-
-  printingTitle = () => {
-    let i = 0;
-    const iteration = () => {
-      setTimeout(() => {
-        this._title.textContent += this._text[i];
-        i++
-        if (i < this._text.length) {
-          iteration();
-        } else {
-          setTimeout(() => {
-            this._eraseTitle();
-          }, 2000);
-          return;
-        }
-      }, 100)
-    }
-
-    iteration();
   }
 
   flashPointer = () => {

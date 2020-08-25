@@ -5,14 +5,17 @@
 .main-button {
   width: 200px;
   height: 50px;
+  padding: 0 0 5px;
+  font-size: 30px;
+  font-weight: 400;
   z-index: 2;
-  font-size: 19px;
   border: none;
   cursor: pointer;
   color: #ffffff;
   position: relative;
   background-color: transparent;
   transition: .5s;
+  /* font-family: 'Courier New', Courier, monospace; */
 }
 
 .main-button:focus {

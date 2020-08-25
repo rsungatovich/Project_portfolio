@@ -8,7 +8,7 @@
   position: absolute;
   list-style: none;
   box-sizing: border-box;
-  border-top: 2px solid whitesmoke;
+  border-top: 1px solid whitesmoke;
   transform: translateX(-150%);
   transition: 1s;
 }

@@ -1,5 +1,8 @@
 .cover__title {
   margin: 0;
   font-size: 120px;
-  color: rgba(245, 245, 245, 0.9);
+  font-weight: 400;
+  line-height: 1;
+  color: #f5f5f5cc;
+  font-family: 'Major Mono Display', monospace;
 }
