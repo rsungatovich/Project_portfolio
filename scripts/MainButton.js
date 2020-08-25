@@ -29,6 +29,8 @@ export default class MainButton {
     closeOptions,
     switchDropdown, 
     unshowStandImage,
+    closeStand,
+    unshowStandInfo,
   }) => {
     this._button.addEventListener('click', () => {
       this._changeName();
@@ -38,6 +40,8 @@ export default class MainButton {
       } else {
         closeOptions();
         unshowStandImage();
+        unshowStandInfo();
+        closeStand();
       }
 
       switchMenu();

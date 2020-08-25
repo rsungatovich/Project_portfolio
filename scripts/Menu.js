@@ -171,9 +171,12 @@ export default class Menu {
     closeStand,
     showStandImage,
     unshowStandImage,
+    showStandInfo,
+    unshowStandInfo,
   }) => {
     this._optionsBack.addEventListener('click', (e) => {
       closeStand();
+      unshowStandInfo();
       this.openList();
       this.closeOptions();
       this.resetLinkText();
@@ -192,5 +195,11 @@ export default class Menu {
         showStandImage(e);
       });
     });
+
+    this._sublinks.forEach((sublink) => {
+      sublink.addEventListener('mouseover', (e) => {
+        showStandInfo(e);
+      });
+    })
   }
 }

@@ -26,6 +26,33 @@ import MainButton from './MainButton.js';
     ],
   }
 
+  const optionsContent = {
+    title: {
+      'About 1': 'Think about it 1', 
+      'About 2': 'Think about it 2', 
+      'About 3': 'Think about it 3',
+      'Project 1': 'My project 1', 
+      'Project 2': 'My project 2', 
+      'Project 3': 'My project 3', 
+      'Project 4': 'My project 4',
+      'Contact 1': 'Just do it 1', 
+      'Contact 2': 'Just do it 2', 
+      'Contact 3': 'Just do it 3',
+    },
+    description: {
+      'About 1': 'Some text 1', 
+      'About 2': 'Some text 2', 
+      'About 3': 'Some text 3',
+      'Project 1': 'Some text 1', 
+      'Project 2': 'Some text 2', 
+      'Project 3': 'Some text 3', 
+      'Project 4': 'Some text 4',
+      'Contact 1': 'Some text 1', 
+      'Contact 2': 'Some text 2', 
+      'Contact 3': 'Some text 3',
+    }
+  }
+
   // DOM
   const dropMenuEl = document.querySelector('.menu');
   const menuListEl = document.querySelector('.menu__list');
@@ -45,6 +72,9 @@ import MainButton from './MainButton.js';
   const contentContainerEl = document.querySelector('.content__container');
   const standContentEl = document.querySelector('.stand__content');
   const standImageEl = document.querySelector('.stand__image');
+  const standInfoEl = document.querySelector('.stand__info');
+  const standInfoTitleEl = document.querySelector('.stand__title');
+  const standInfoDescEl = document.querySelector('.stand__description');
   
   //classes
   
@@ -59,13 +89,17 @@ import MainButton from './MainButton.js';
     menuOptionsEl, 
     menuOptionsBackEl,
   });
-  
-  const stand = new Stand ({ 
+
+  const stand = new Stand ({
+    optionsContent,
     standEl, 
     standTopEl, 
     standBottomEl,
     standContentEl,
-    standImageEl
+    standImageEl,
+    standInfoEl,
+    standInfoTitleEl,
+    standInfoDescEl,
   });
   
   const cover = new Cover ({ 
@@ -90,14 +124,18 @@ import MainButton from './MainButton.js';
     closeStand: stand.close,
     showStandImage: stand.showImage,
     unshowStandImage: stand.unshowImage,
+    showStandInfo: stand.showInfo,
+    unshowStandInfo: stand.unshowInfo,
   });
-  
+
   mainButton.setEventListeners({  
     openList: menu.openList,
     switchMenu: menu.switchMenu,
     switchDropdown: dropdown.switch,
     closeOptions: menu.closeOptions,
     unshowStandImage: stand.unshowImage,
+    closeStand: stand.close,
+    unshowStandInfo: stand.unshowInfo,
   });
   
   const createCard = () => {
