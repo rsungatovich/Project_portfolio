@@ -1,5 +1,7 @@
 .stand__top {
   height: 50%;
+  z-index: 99;
+  position: relative;
   transition: .3s linear .2s;
   transform: translateY(-101%);
   background-color: whitesmoke;
