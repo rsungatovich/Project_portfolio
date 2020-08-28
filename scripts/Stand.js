@@ -1,10 +1,11 @@
 export default class Stand {
   constructor (params) {
+    this._vivus = params.vivus;
     this._stand = params.standEl;
     this._top = params.standTopEl;
     this._bottom = params.standBottomEl;
     this._content = params.standContentEl;
-    this._contentImage = params.standImageEl;
+    this._contentImages = params.standImagesEl;
     this._contentInfo = params.standInfoEl;
     this._standInfoTitleEl = params.standInfoTitleEl;
     this._standInfoDescEl = params.standInfoDescEl;
@@ -23,25 +24,31 @@ export default class Stand {
   }
 
   showImage = (e) => {   
-    this._contentImage.style.opacity = '.8';
-    this._contentImage.style.visibility = 'visible';
     this._switchImage(e); 
   }
 
   unshowImage = () => {
-    this._contentImage.style.opacity = '';
-    this._contentImage.style.visibility = 'hidden';
+    this._contentImages.forEach(image => {
+      image.style.opacity = '';
+      image.style.visibility = 'hidden';
+    });
   }
 
   _switchImage = (e) => {
     if (e.target.textContent === this._menuLinksNames[0]) {
-      this._contentImage.setAttribute('src', './images/about.svg');
+      this._contentImages[0].style.opacity = '.8';
+      this._contentImages[0].style.visibility = 'visible';
+      this._vivus.vivusAbout.stop().reset().play();
     }
     if (e.target.textContent === this._menuLinksNames[1]) {
-      this._contentImage.setAttribute('src', './images/projects.svg');
+      this._contentImages[1].style.opacity = '.8';
+      this._contentImages[1].style.visibility = 'visible';
+      this._vivus.vivusProjects.stop().reset().play();
     }
     if (e.target.textContent === this._menuLinksNames[2]) {
-      this._contentImage.setAttribute('src', './images/contacts.svg');
+      this._contentImages[2].style.opacity = '.8';
+      this._contentImages[2].style.visibility = 'visible';
+      this._vivus.vivusContacts.stop().reset().play();
     }
   }
 

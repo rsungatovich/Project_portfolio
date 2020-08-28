@@ -30,7 +30,25 @@
           <div class="stand__top"></div>
           <div class="stand__bottom"></div>
           <div class="stand__content">
-            <img class="stand__image" src="">
+            <!-- <img class="stand__image" src=""> -->
+            <object 
+              class="stand__image" 
+              id="svg-about" 
+              type="image/svg+xml" 
+              data="./images/about.svg">
+            </object>
+            <object 
+              class="stand__image" 
+              id="svg-projects" 
+              type="image/svg+xml" 
+              data="./images/projects.svg">
+            </object>
+            <object 
+              class="stand__image" 
+              id="svg-contacts" 
+              type="image/svg+xml" 
+              data="./images/contacts.svg">
+            </object>
             <div class="stand__info">
               <h2 class="stand__title">Title</h2>
               <p class="stand__description">
@@ -74,6 +92,10 @@
       </div>
     </main>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vivus/0.4.5/vivus.min.js">
+  </script>
+
   <script type="module" src="./scripts/Card.js"></script>
   <script type="module" src="./scripts/Cover.js"></script>
   <script type="module" src="./scripts/Menu.js"></script>

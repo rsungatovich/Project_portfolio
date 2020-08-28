@@ -50,16 +50,16 @@ import MainButton from './MainButton.js';
       'Contact 3': 'Just do it 3',
     },
     description: {
-      'About 1': 'Some text 1', 
-      'About 2': 'Some text 2', 
-      'About 3': 'Some text 3',
-      'Project 1': 'Some text 1', 
-      'Project 2': 'Some text 2', 
-      'Project 3': 'Some text 3', 
-      'Project 4': 'Some text 4',
-      'Contact 1': 'Some text 1', 
-      'Contact 2': 'Some text 2', 
-      'Contact 3': 'Some text 3',
+      'About 1': 'Some text 1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse perferendis ut quibusdam praesentium facere qui velit, neque cupiditate deleniti sapiente aut, consequatur necessitatibus. Cupiditate, magni. Illo omnis qui aspernatur voluptatum!', 
+      'About 2': 'Some text 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse perferendis ut quibusdam praesentium facere qui velit, neque cupiditate deleniti sapiente aut, consequatur necessitatibus. Cupiditate, magni. Illo omnis qui aspernatur voluptatum!', 
+      'About 3': 'Some text 3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse perferendis ut quibusdam praesentium facere qui velit, neque cupiditate deleniti sapiente aut, consequatur necessitatibus. Cupiditate, magni. Illo omnis qui aspernatur voluptatum!',
+      'Project 1': 'Some text 1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse perferendis ut quibusdam praesentium facere qui velit, neque cupiditate deleniti sapiente aut, consequatur necessitatibus. Cupiditate, magni. Illo omnis qui aspernatur voluptatum!', 
+      'Project 2': 'Some text 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse perferendis ut quibusdam praesentium facere qui velit, neque cupiditate deleniti sapiente aut, consequatur necessitatibus. Cupiditate, magni. Illo omnis qui aspernatur voluptatum!', 
+      'Project 3': 'Some text 3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse perferendis ut quibusdam praesentium facere qui velit, neque cupiditate deleniti sapiente aut, consequatur necessitatibus. Cupiditate, magni. Illo omnis qui aspernatur voluptatum!', 
+      'Project 4': 'Some text 4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse perferendis ut quibusdam praesentium facere qui velit, neque cupiditate deleniti sapiente aut, consequatur necessitatibus. Cupiditate, magni. Illo omnis qui aspernatur voluptatum!',
+      'Contact 1': 'Some text 1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse perferendis ut quibusdam praesentium facere qui velit, neque cupiditate deleniti sapiente aut, consequatur necessitatibus. Cupiditate, magni. Illo omnis qui aspernatur voluptatum!', 
+      'Contact 2': 'Some text 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse perferendis ut quibusdam praesentium facere qui velit, neque cupiditate deleniti sapiente aut, consequatur necessitatibus. Cupiditate, magni. Illo omnis qui aspernatur voluptatum!', 
+      'Contact 3': 'Some text 3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse perferendis ut quibusdam praesentium facere qui velit, neque cupiditate deleniti sapiente aut, consequatur necessitatibus. Cupiditate, magni. Illo omnis qui aspernatur voluptatum!',
     }
   }
 
@@ -81,11 +81,42 @@ import MainButton from './MainButton.js';
   const dropdownEl = document.querySelector('.dropdown')
   const contentContainerEl = document.querySelector('.content__container');
   const standContentEl = document.querySelector('.stand__content');
-  const standImageEl = document.querySelector('.stand__image');
+  const standImagesEl = document.querySelectorAll('.stand__image');
   const standInfoEl = document.querySelector('.stand__info');
   const standInfoTitleEl = document.querySelector('.stand__title');
   const standInfoDescEl = document.querySelector('.stand__description');
   
+
+  // plugins
+  
+  const vivusAbout = new Vivus(
+    'svg-about',
+    {
+      start: 'manual',
+      type: 'delayed',
+      duration: 200,
+      animTimingFunction: Vivus.EASE
+    },
+  );
+  const vivusProjects = new Vivus(
+    'svg-projects',
+    {
+      start: 'manual',
+      type: 'delayed',
+      duration: 100,
+      animTimingFunction: Vivus.EASE
+    },
+  );
+  const vivusContacts = new Vivus(
+    'svg-contacts',
+    {
+      start: 'manual',
+      type: 'delayed',
+      duration: 200,
+      animTimingFunction: Vivus.EASE
+    },
+  );
+
   //classes
   
   const dropdown = new Dropdown ({ dropdownEl });
@@ -102,13 +133,18 @@ import MainButton from './MainButton.js';
   });
 
   const stand = new Stand ({
+    vivus: {
+      vivusAbout,
+      vivusProjects,
+      vivusContacts,
+    },
     menuLinksNames,
     optionsContent,
     standEl, 
     standTopEl, 
     standBottomEl,
     standContentEl,
-    standImageEl,
+    standImagesEl,
     standInfoEl,
     standInfoTitleEl,
     standInfoDescEl,
