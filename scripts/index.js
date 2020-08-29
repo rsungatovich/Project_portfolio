@@ -197,10 +197,10 @@ import MainButton from './MainButton.js';
 addEventListener('load', () => {
   setTimeout(() => {
     preloaderEl.style.opacity = 0;
-  }, 1000);
+  }, 500);
   setTimeout(() => {
     preloaderEl.style.display = 'none';
-  }, 10000);
+  }, 1000);
 })
 
 })();

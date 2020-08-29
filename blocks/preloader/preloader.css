@@ -6,6 +6,6 @@
   z-index: 99;
   opacity: 1;
   position: absolute;
-  background-color: #131313;
-  transition: 2s;
+  background-color: #1a1a1a;
+  transition: .3s;
 }
