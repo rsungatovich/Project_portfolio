@@ -85,6 +85,7 @@ import MainButton from './MainButton.js';
   const standInfoEl = document.querySelector('.stand__info');
   const standInfoTitleEl = document.querySelector('.stand__title');
   const standInfoDescEl = document.querySelector('.stand__description');
+  const preloaderEl = document.querySelector('.preloader');
   
 
   // plugins
@@ -192,4 +193,14 @@ import MainButton from './MainButton.js';
     const cardInstance = new Card({ contentContainerEl });
     cardInstance.create();
   };
+
+addEventListener('load', () => {
+  setTimeout(() => {
+    preloaderEl.style.opacity = 0;
+  }, 1000);
+  setTimeout(() => {
+    preloaderEl.style.display = 'none';
+  }, 10000);
+})
+
 })();

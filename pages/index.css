@@ -7,5 +7,6 @@
 @import url('../blocks/content/content.css');
 @import url('../blocks/dropdown/dropdown.css');
 @import url('../blocks/main-button/main-button.css');
+@import url('../blocks/preloader/preloader.css');
 
 @import url('../blocks/mixes/mixes.css');
